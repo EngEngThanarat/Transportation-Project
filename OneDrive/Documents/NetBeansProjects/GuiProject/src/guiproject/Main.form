@@ -278,22 +278,6 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="ButtonSetting">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="59" green="21" red="36" type="rgb"/>
-                    </Property>
-                    <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/guiproject/icon/icons8_settings_32px.png"/>
-                    </Property>
-                  </Properties>
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
-                      <BorderConstraints direction="Center"/>
-                    </Constraint>
-                  </Constraints>
-                </Component>
                 <Component class="javax.swing.JLabel" name="ButtonSetting1">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -301,7 +285,7 @@
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/guiproject/icon/icons8_employee_32px.png"/>
+                      <Image iconType="3" name="/guiproject/icon/icons8_settings_32px.png"/>
                     </Property>
                   </Properties>
                   <Constraints>

@@ -40,7 +40,6 @@ public class Main extends javax.swing.JFrame {
         menuIcon = new javax.swing.JPanel();
         LineMenu = new javax.swing.JPanel();
         Setting = new javax.swing.JPanel();
-        ButtonSetting = new javax.swing.JLabel();
         ButtonSetting1 = new javax.swing.JLabel();
         LineSetting1 = new javax.swing.JPanel();
         LineSetting = new javax.swing.JPanel();
@@ -188,14 +187,9 @@ public class Main extends javax.swing.JFrame {
         });
         Setting.setLayout(new java.awt.BorderLayout());
 
-        ButtonSetting.setBackground(new java.awt.Color(54, 33, 89));
-        ButtonSetting.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ButtonSetting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guiproject/icon/icons8_settings_32px.png"))); // NOI18N
-        Setting.add(ButtonSetting, java.awt.BorderLayout.CENTER);
-
         ButtonSetting1.setBackground(new java.awt.Color(54, 33, 89));
         ButtonSetting1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ButtonSetting1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guiproject/icon/icons8_employee_32px.png"))); // NOI18N
+        ButtonSetting1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guiproject/icon/icons8_settings_32px.png"))); // NOI18N
         Setting.add(ButtonSetting1, java.awt.BorderLayout.CENTER);
 
         LineSetting1.setBackground(new java.awt.Color(54, 33, 89));
@@ -322,7 +316,7 @@ public class Main extends javax.swing.JFrame {
     }
     
     public void changeimage(JLabel button, String resourcheimg){
-        ImageIcon aimg = new ImageIcon(); 
+        ImageIcon aimg = new ImageIcon(getClass().getResource(resourcheimg)); 
         button.setIcon(aimg);
     }
     
@@ -436,7 +430,6 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ButtonHide;
-    private javax.swing.JLabel ButtonSetting;
     private javax.swing.JLabel ButtonSetting1;
     private javax.swing.JPanel Header;
     private javax.swing.JPanel IconSizeClose;
