@@ -4,6 +4,8 @@
  */
 package guiproject;
 import java.awt.*;
+import java.awt.event.*;
+import java.util.ArrayList;
 import javax.swing.*;
 /**
  *
@@ -15,6 +17,7 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     boolean a=true;
+    CardLayout cdl;
     public Main() {
         initComponents();
     }
@@ -36,18 +39,25 @@ public class Main extends javax.swing.JFrame {
         closeClick = new javax.swing.JLabel();
         min = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        menu = new javax.swing.JPanel();
-        menuIcon = new javax.swing.JPanel();
-        LineMenu = new javax.swing.JPanel();
-        Setting = new javax.swing.JPanel();
-        ButtonSetting1 = new javax.swing.JLabel();
-        LineSetting1 = new javax.swing.JPanel();
-        LineSetting = new javax.swing.JPanel();
-        hideMenu = new javax.swing.JPanel();
-        ButtonHide = new javax.swing.JLabel();
-        LineSetting3 = new javax.swing.JPanel();
-        menuHide = new javax.swing.JPanel();
         dashboard = new javax.swing.JPanel();
+        menuIcon = new javax.swing.JPanel();
+        LineAdd = new javax.swing.JPanel();
+        Employee = new javax.swing.JPanel();
+        ButtonSetting1 = new javax.swing.JLabel();
+        LineEmplo = new javax.swing.JPanel();
+        add = new javax.swing.JPanel();
+        ButtonHide = new javax.swing.JLabel();
+        LineAdmin = new javax.swing.JPanel();
+        Admin = new javax.swing.JPanel();
+        ButtonSetting2 = new javax.swing.JLabel();
+        Check = new javax.swing.JPanel();
+        ButtonSetting3 = new javax.swing.JLabel();
+        LineCheck = new javax.swing.JPanel();
+        menu = new javax.swing.JPanel();
+        employee = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField();
+        admin = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -148,153 +158,239 @@ public class Main extends javax.swing.JFrame {
         jLabel1.setText("   WORLDWIDE SHIPPING");
         Header.add(jLabel1, java.awt.BorderLayout.CENTER);
 
-        getContentPane().add(Header, java.awt.BorderLayout.PAGE_START);
-
-        menu.setPreferredSize(new java.awt.Dimension(270, 450));
-        menu.setLayout(new java.awt.BorderLayout());
-
-        menuIcon.setBackground(new java.awt.Color(54, 33, 89));
-        menuIcon.setPreferredSize(new java.awt.Dimension(50, 450));
-        menuIcon.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        LineMenu.setBackground(new java.awt.Color(54, 33, 89));
-        LineMenu.setPreferredSize(new java.awt.Dimension(50, 5));
-
-        javax.swing.GroupLayout LineMenuLayout = new javax.swing.GroupLayout(LineMenu);
-        LineMenu.setLayout(LineMenuLayout);
-        LineMenuLayout.setHorizontalGroup(
-            LineMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
-        LineMenuLayout.setVerticalGroup(
-            LineMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 5, Short.MAX_VALUE)
-        );
-
-        menuIcon.add(LineMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 5));
-
-        Setting.setBackground(new java.awt.Color(54, 33, 89));
-        Setting.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SettingMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                SettingMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                SettingMouseExited(evt);
-            }
-        });
-        Setting.setLayout(new java.awt.BorderLayout());
-
-        ButtonSetting1.setBackground(new java.awt.Color(54, 33, 89));
-        ButtonSetting1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ButtonSetting1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guiproject/icon/icons8_settings_32px.png"))); // NOI18N
-        Setting.add(ButtonSetting1, java.awt.BorderLayout.CENTER);
-
-        LineSetting1.setBackground(new java.awt.Color(54, 33, 89));
-        LineSetting1.setPreferredSize(new java.awt.Dimension(50, 5));
-
-        javax.swing.GroupLayout LineSetting1Layout = new javax.swing.GroupLayout(LineSetting1);
-        LineSetting1.setLayout(LineSetting1Layout);
-        LineSetting1Layout.setHorizontalGroup(
-            LineSetting1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
-        LineSetting1Layout.setVerticalGroup(
-            LineSetting1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 5, Short.MAX_VALUE)
-        );
-
-        Setting.add(LineSetting1, java.awt.BorderLayout.PAGE_START);
-
-        menuIcon.add(Setting, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 50, 50));
-
-        LineSetting.setBackground(new java.awt.Color(54, 33, 89));
-        LineSetting.setPreferredSize(new java.awt.Dimension(50, 5));
-
-        javax.swing.GroupLayout LineSettingLayout = new javax.swing.GroupLayout(LineSetting);
-        LineSetting.setLayout(LineSettingLayout);
-        LineSettingLayout.setHorizontalGroup(
-            LineSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
-        LineSettingLayout.setVerticalGroup(
-            LineSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 5, Short.MAX_VALUE)
-        );
-
-        menuIcon.add(LineSetting, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 55, 50, 5));
-
-        hideMenu.setBackground(new java.awt.Color(54, 33, 89));
-        hideMenu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                hideMenuMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                hideMenuMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                hideMenuMouseExited(evt);
-            }
-        });
-        hideMenu.setLayout(new java.awt.BorderLayout());
-
-        ButtonHide.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ButtonHide.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guiproject/icon/icons8_menu_vertical_32px.png"))); // NOI18N
-        hideMenu.add(ButtonHide, java.awt.BorderLayout.CENTER);
-
-        menuIcon.add(hideMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 5, 50, 50));
-
-        LineSetting3.setBackground(new java.awt.Color(54, 33, 89));
-        LineSetting3.setPreferredSize(new java.awt.Dimension(50, 5));
-
-        javax.swing.GroupLayout LineSetting3Layout = new javax.swing.GroupLayout(LineSetting3);
-        LineSetting3.setLayout(LineSetting3Layout);
-        LineSetting3Layout.setHorizontalGroup(
-            LineSetting3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
-        LineSetting3Layout.setVerticalGroup(
-            LineSetting3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 5, Short.MAX_VALUE)
-        );
-
-        menuIcon.add(LineSetting3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 50, 5));
-
-        menu.add(menuIcon, java.awt.BorderLayout.LINE_START);
-
-        menuHide.setBackground(new java.awt.Color(64, 43, 100));
-
-        javax.swing.GroupLayout menuHideLayout = new javax.swing.GroupLayout(menuHide);
-        menuHide.setLayout(menuHideLayout);
-        menuHideLayout.setHorizontalGroup(
-            menuHideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 220, Short.MAX_VALUE)
-        );
-        menuHideLayout.setVerticalGroup(
-            menuHideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-
-        menu.add(menuHide, java.awt.BorderLayout.CENTER);
-
-        getContentPane().add(menu, java.awt.BorderLayout.LINE_START);
-
         dashboard.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout dashboardLayout = new javax.swing.GroupLayout(dashboard);
         dashboard.setLayout(dashboardLayout);
         dashboardLayout.setHorizontalGroup(
             dashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 170, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         dashboardLayout.setVerticalGroup(
             dashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 408, Short.MAX_VALUE)
         );
 
-        getContentPane().add(dashboard, java.awt.BorderLayout.CENTER);
+        menuIcon.setBackground(new java.awt.Color(54, 33, 89));
+        menuIcon.setPreferredSize(new java.awt.Dimension(50, 450));
+        menuIcon.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        LineAdd.setBackground(new java.awt.Color(54, 33, 89));
+        LineAdd.setPreferredSize(new java.awt.Dimension(50, 5));
+
+        javax.swing.GroupLayout LineAddLayout = new javax.swing.GroupLayout(LineAdd);
+        LineAdd.setLayout(LineAddLayout);
+        LineAddLayout.setHorizontalGroup(
+            LineAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+        LineAddLayout.setVerticalGroup(
+            LineAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 5, Short.MAX_VALUE)
+        );
+
+        menuIcon.add(LineAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 5));
+
+        Employee.setBackground(new java.awt.Color(54, 33, 89));
+        Employee.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EmployeeMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                EmployeeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                EmployeeMouseExited(evt);
+            }
+        });
+        Employee.setLayout(new java.awt.BorderLayout());
+
+        ButtonSetting1.setBackground(new java.awt.Color(54, 33, 89));
+        ButtonSetting1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ButtonSetting1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guiproject/icon/icons8_employee_32px.png"))); // NOI18N
+        Employee.add(ButtonSetting1, java.awt.BorderLayout.CENTER);
+
+        menuIcon.add(Employee, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 50, 50));
+
+        LineEmplo.setBackground(new java.awt.Color(54, 33, 89));
+        LineEmplo.setPreferredSize(new java.awt.Dimension(50, 5));
+
+        javax.swing.GroupLayout LineEmploLayout = new javax.swing.GroupLayout(LineEmplo);
+        LineEmplo.setLayout(LineEmploLayout);
+        LineEmploLayout.setHorizontalGroup(
+            LineEmploLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+        LineEmploLayout.setVerticalGroup(
+            LineEmploLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 5, Short.MAX_VALUE)
+        );
+
+        menuIcon.add(LineEmplo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 55, 50, 5));
+
+        add.setBackground(new java.awt.Color(54, 33, 89));
+        add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addMouseExited(evt);
+            }
+        });
+        add.setLayout(new java.awt.BorderLayout());
+
+        ButtonHide.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ButtonHide.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guiproject/icon/icons8_add_32px.png"))); // NOI18N
+        add.add(ButtonHide, java.awt.BorderLayout.CENTER);
+
+        menuIcon.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 5, 50, 50));
+
+        LineAdmin.setBackground(new java.awt.Color(54, 33, 89));
+        LineAdmin.setPreferredSize(new java.awt.Dimension(50, 5));
+
+        javax.swing.GroupLayout LineAdminLayout = new javax.swing.GroupLayout(LineAdmin);
+        LineAdmin.setLayout(LineAdminLayout);
+        LineAdminLayout.setHorizontalGroup(
+            LineAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+        LineAdminLayout.setVerticalGroup(
+            LineAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 5, Short.MAX_VALUE)
+        );
+
+        menuIcon.add(LineAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 50, 5));
+
+        Admin.setBackground(new java.awt.Color(54, 33, 89));
+        Admin.setPreferredSize(new java.awt.Dimension(50, 50));
+        Admin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AdminMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                AdminMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                AdminMouseExited(evt);
+            }
+        });
+        Admin.setLayout(new java.awt.BorderLayout());
+
+        ButtonSetting2.setBackground(new java.awt.Color(54, 33, 89));
+        ButtonSetting2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ButtonSetting2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guiproject/icon/icons8_male_user_32px.png"))); // NOI18N
+        Admin.add(ButtonSetting2, java.awt.BorderLayout.CENTER);
+
+        menuIcon.add(Admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 115, 50, 50));
+
+        Check.setBackground(new java.awt.Color(54, 33, 89));
+        Check.setPreferredSize(new java.awt.Dimension(50, 50));
+        Check.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CheckMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CheckMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                CheckMouseExited(evt);
+            }
+        });
+        Check.setLayout(new java.awt.BorderLayout());
+
+        ButtonSetting3.setBackground(new java.awt.Color(54, 33, 89));
+        ButtonSetting3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ButtonSetting3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guiproject/icon/icons8_Check_Circle_32px.png"))); // NOI18N
+        Check.add(ButtonSetting3, java.awt.BorderLayout.CENTER);
+
+        menuIcon.add(Check, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 50, 50));
+
+        LineCheck.setBackground(new java.awt.Color(54, 33, 89));
+        LineCheck.setPreferredSize(new java.awt.Dimension(50, 5));
+
+        javax.swing.GroupLayout LineCheckLayout = new javax.swing.GroupLayout(LineCheck);
+        LineCheck.setLayout(LineCheckLayout);
+        LineCheckLayout.setHorizontalGroup(
+            LineCheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+        LineCheckLayout.setVerticalGroup(
+            LineCheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 5, Short.MAX_VALUE)
+        );
+
+        menuIcon.add(LineCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 165, 50, 5));
+
+        menu.setFocusable(false);
+        menu.setPreferredSize(new java.awt.Dimension(270, 450));
+        menu.setLayout(new java.awt.CardLayout());
+
+        jTextField1.setText("jTextField1");
+
+        javax.swing.GroupLayout employeeLayout = new javax.swing.GroupLayout(employee);
+        employee.setLayout(employeeLayout);
+        employeeLayout.setHorizontalGroup(
+            employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(employeeLayout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(80, Short.MAX_VALUE))
+        );
+        employeeLayout.setVerticalGroup(
+            employeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(employeeLayout.createSequentialGroup()
+                .addGap(107, 107, 107)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(281, Short.MAX_VALUE))
+        );
+
+        menu.add(employee, "Employee");
+
+        jButton1.setText("jButton1");
+
+        javax.swing.GroupLayout adminLayout = new javax.swing.GroupLayout(admin);
+        admin.setLayout(adminLayout);
+        adminLayout.setHorizontalGroup(
+            adminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(adminLayout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(83, Short.MAX_VALUE))
+        );
+        adminLayout.setVerticalGroup(
+            adminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(adminLayout.createSequentialGroup()
+                .addGap(157, 157, 157)
+                .addComponent(jButton1)
+                .addContainerGap(228, Short.MAX_VALUE))
+        );
+
+        menu.add(admin, "Admin");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Header, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(menuIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(Header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(menuIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(dashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -303,31 +399,37 @@ public class Main extends javax.swing.JFrame {
         hover.setBackground(rand);
     }
     
-    public void clickmenu(JPanel h1,JPanel h2, int numberbool){
+    public void clickmenu(JPanel h1,JPanel h2,JPanel h3,JPanel h4, int numberbool){
         if(numberbool == 1){
             h1.setBackground(new Color(25,29,74));
             h2.setBackground(new Color(54,33,89));
-            
+            h3.setBackground(new Color(54,33,89));
+            h4.setBackground(new Color(54,33,89));
         }
-        else {
+        else if(numberbool == 2){
             h1.setBackground(new Color(54,33,89));
             h2.setBackground(new Color(25,29,74));
+            h3.setBackground(new Color(54,33,89));
+            h4.setBackground(new Color(54,33,89));
+        }else if(numberbool == 3){
+            h1.setBackground(new Color(54,33,89));
+            h2.setBackground(new Color(54,33,89));
+            h3.setBackground(new Color(25,29,74));
+            h4.setBackground(new Color(54,33,89));
+        }else {
+            h1.setBackground(new Color(54,33,89));
+            h2.setBackground(new Color(54,33,89));
+            h3.setBackground(new Color(54,33,89));
+            h4.setBackground(new Color(25,29,74));
         }
-    }
-    
-    public void changeimage(JLabel button, String resourcheimg){
-        ImageIcon aimg = new ImageIcon(getClass().getResource(resourcheimg)); 
-        button.setIcon(aimg);
     }
     
     public void hideshow(JPanel menushowhide, boolean dashboard,JLabel Button){
         if(dashboard == true){
             menushowhide.setPreferredSize(new Dimension(50, menushowhide.getHeight()));
-            changeimage(Button,"/icon/icons8_menu_32px.png");
         }
         else{
             menushowhide.setPreferredSize(new Dimension(270, menushowhide.getHeight()));}
-            changeimage(Button,"/icon/icons8_menu_vertical_32px.png");
     }
     
     private void closeClickMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeClickMouseEntered
@@ -358,40 +460,62 @@ public class Main extends javax.swing.JFrame {
             this.setExtendedState(Main.NORMAL);}
     }//GEN-LAST:event_maxClickMouseClicked
     
-    private void hideMenuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hideMenuMouseEntered
-        changecolor(LineMenu,new Color(255,0,0));
-    }//GEN-LAST:event_hideMenuMouseEntered
+    private void addMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseEntered
+        changecolor(LineAdd,new Color(255,0,0));
+    }//GEN-LAST:event_addMouseEntered
 
-    private void hideMenuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hideMenuMouseExited
-        changecolor(LineMenu,new Color(54,33,89));
-    }//GEN-LAST:event_hideMenuMouseExited
+    private void addMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseExited
+        changecolor(LineAdd,new Color(54,33,89));
+    }//GEN-LAST:event_addMouseExited
 
-    private void hideMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hideMenuMouseClicked
-        clickmenu(hideMenu, Setting,1);
+    private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
+        clickmenu(add, Employee,Admin,Check,1);
         //create void for methode hide and show panel menu
-        if(a == true){
-            hideshow(menu,a,ButtonHide);
-            SwingUtilities.updateComponentTreeUI(this);
-            a=false;
-        }
-        else{
-            hideshow(menu,a,ButtonHide);
-            SwingUtilities.updateComponentTreeUI(this);
-            a=true;
-        }
-    }//GEN-LAST:event_hideMenuMouseClicked
+        menu.setVisible(false);
+    }//GEN-LAST:event_addMouseClicked
 
-    private void SettingMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SettingMouseEntered
-        changecolor(LineSetting,new Color(255,0,0));
-    }//GEN-LAST:event_SettingMouseEntered
+    private void EmployeeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeMouseEntered
+        changecolor(LineEmplo,new Color(255,0,0));
+    }//GEN-LAST:event_EmployeeMouseEntered
 
-    private void SettingMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SettingMouseExited
-        changecolor(LineSetting,new Color(54,33,89));
-    }//GEN-LAST:event_SettingMouseExited
+    private void EmployeeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeMouseExited
+        changecolor(LineEmplo,new Color(54,33,89));
+    }//GEN-LAST:event_EmployeeMouseExited
 
-    private void SettingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SettingMouseClicked
-        clickmenu(hideMenu, Setting,2);
-    }//GEN-LAST:event_SettingMouseClicked
+    private void EmployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeMouseClicked
+        clickmenu(add, Employee,Admin,Check,2);
+        menu.setVisible(true);
+        cdl = (CardLayout)menu.getLayout();
+        cdl.show(menu,"Employee");
+    }//GEN-LAST:event_EmployeeMouseClicked
+
+    private void AdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminMouseClicked
+        clickmenu(add, Employee,Admin,Check,3);
+        menu.setVisible(true);
+        cdl = (CardLayout)menu.getLayout();
+        cdl.show(menu,"Admin");
+    }//GEN-LAST:event_AdminMouseClicked
+
+    private void AdminMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminMouseEntered
+        changecolor(LineAdmin,new Color(255,0,0));
+    }//GEN-LAST:event_AdminMouseEntered
+
+    private void AdminMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminMouseExited
+        changecolor(LineAdmin,new Color(54,33,89));
+    }//GEN-LAST:event_AdminMouseExited
+
+    private void CheckMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckMouseClicked
+        clickmenu(add, Employee,Admin,Check,4);
+        menu.setVisible(false);
+    }//GEN-LAST:event_CheckMouseClicked
+
+    private void CheckMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckMouseEntered
+        changecolor(LineCheck,new Color(255,0,0));
+    }//GEN-LAST:event_CheckMouseEntered
+
+    private void CheckMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckMouseExited
+        changecolor(LineCheck,new Color(54,33,89));
+    }//GEN-LAST:event_CheckMouseExited
 
     /**
      * @param args the command line arguments
@@ -429,24 +553,31 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Admin;
     private javax.swing.JLabel ButtonHide;
     private javax.swing.JLabel ButtonSetting1;
+    private javax.swing.JLabel ButtonSetting2;
+    private javax.swing.JLabel ButtonSetting3;
+    private javax.swing.JPanel Check;
+    private javax.swing.JPanel Employee;
     private javax.swing.JPanel Header;
     private javax.swing.JPanel IconSizeClose;
-    private javax.swing.JPanel LineMenu;
-    private javax.swing.JPanel LineSetting;
-    private javax.swing.JPanel LineSetting1;
-    private javax.swing.JPanel LineSetting3;
-    private javax.swing.JPanel Setting;
+    private javax.swing.JPanel LineAdd;
+    private javax.swing.JPanel LineAdmin;
+    private javax.swing.JPanel LineCheck;
+    private javax.swing.JPanel LineEmplo;
+    private javax.swing.JPanel add;
+    private javax.swing.JPanel admin;
     private javax.swing.JPanel close;
     private javax.swing.JLabel closeClick;
     private javax.swing.JPanel dashboard;
-    private javax.swing.JPanel hideMenu;
+    private javax.swing.JPanel employee;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel max;
     private javax.swing.JLabel maxClick;
     private javax.swing.JPanel menu;
-    private javax.swing.JPanel menuHide;
     private javax.swing.JPanel menuIcon;
     private javax.swing.JPanel min;
     // End of variables declaration//GEN-END:variables
