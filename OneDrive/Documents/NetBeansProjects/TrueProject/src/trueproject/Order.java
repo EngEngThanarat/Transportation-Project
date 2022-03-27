@@ -4,6 +4,9 @@
  */
 package trueproject;
 
+import java.awt.Color;
+import java.sql.ResultSet;
+import java.util.Random;
 import javax.swing.*;
 
 /**
@@ -15,32 +18,53 @@ public class Order extends javax.swing.JFrame {
     /**
      * Creates new form NewOrders
      */
+    static  String track ;
     public Order() {
         initComponents();
         Name.setHint("Your Name");
         Name.setBorder(BorderFactory.createCompoundBorder(
-        Name.getBorder(), 
-        BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-        
+                Name.getBorder(),
+                BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+
+        destination.setHint("Your destination");
+        destination.setBorder(BorderFactory.createCompoundBorder(
+                destination.getBorder(),
+                BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+
         Surname.setHint("Your Surname");
         Surname.setBorder(BorderFactory.createCompoundBorder(
-        Surname.getBorder(), 
-        BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-        
+                Surname.getBorder(),
+                BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+
         Address.setHint("Your Address");
         Address.setBorder(BorderFactory.createCompoundBorder(
-        Address.getBorder(), 
-        BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-        
+                Address.getBorder(),
+                BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+
         Type.setHint("Your Parcel Type");
         Type.setBorder(BorderFactory.createCompoundBorder(
-        Type.getBorder(), 
-        BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-        
-        Box.setHint("Box weight and size");
-        Box.setBorder(BorderFactory.createCompoundBorder(
-        Box.getBorder(), 
-        BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+                Type.getBorder(),
+                BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+    }
+
+    public static String Random_Track() {
+        String track = "", query;
+        try {
+            ConnectionDB db = new ConnectionDB();
+            ResultSet rs;
+            Random rd = new Random();
+            while (true) {
+                for (int i = 0; i <= 6; i++) {
+                    track += String.valueOf(rd.nextInt(10));
+                }
+                query = String.format("SELECT ID_track FROM orders WHERE ID_track= '%s')", track);
+                rs = db.get_resultset(query);
+                rs.next();
+                db.disconnect();
+            }
+        } catch (Exception e) {
+            return track;
+        }
     }
 
     /**
@@ -53,6 +77,7 @@ public class Order extends javax.swing.JFrame {
     private void initComponents() {
 
         Address2 = new javax.swing.JTextField();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         Menu = new javax.swing.JPanel();
         Exit = new javax.swing.JLabel();
         Head = new javax.swing.JLabel();
@@ -67,16 +92,12 @@ public class Order extends javax.swing.JFrame {
         Dashboard = new javax.swing.JPanel();
         HeadDash = new javax.swing.JLabel();
         Generate = new javax.swing.JButton();
-        normal = new javax.swing.JPanel();
-        NormalButton = new javax.swing.JLabel();
-        Fast = new javax.swing.JPanel();
-        FastButton = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         Name = new swing.SearchText();
         Surname = new swing.SearchText();
         Address = new swing.SearchText();
         Type = new swing.SearchText();
-        Box = new swing.SearchText();
+        destination = new swing.SearchText();
+        box = new javax.swing.JComboBox<>();
 
         Address2.setBackground(new java.awt.Color(204, 204, 204));
         Address2.setText("address");
@@ -88,6 +109,11 @@ public class Order extends javax.swing.JFrame {
         Menu.setBackground(new java.awt.Color(54, 33, 89));
 
         Exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trueproject/image/icons8_shutdown_32px.png"))); // NOI18N
+        Exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ExitMouseClicked(evt);
+            }
+        });
 
         Head.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         Head.setForeground(new java.awt.Color(255, 255, 255));
@@ -100,6 +126,17 @@ public class Order extends javax.swing.JFrame {
         OrderButton.setForeground(new java.awt.Color(255, 255, 255));
         OrderButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         OrderButton.setText("NEW ORDERS");
+        OrderButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OrderButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                OrderButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                OrderButtonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout OrdersLayout = new javax.swing.GroupLayout(Orders);
         Orders.setLayout(OrdersLayout);
@@ -118,6 +155,17 @@ public class Order extends javax.swing.JFrame {
         EmployeeButton.setForeground(new java.awt.Color(255, 255, 255));
         EmployeeButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         EmployeeButton.setText("EMPLOYEE");
+        EmployeeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EmployeeButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                EmployeeButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                EmployeeButtonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout EmployeeLayout = new javax.swing.GroupLayout(Employee);
         Employee.setLayout(EmployeeLayout);
@@ -136,6 +184,17 @@ public class Order extends javax.swing.JFrame {
         AdminButton.setForeground(new java.awt.Color(255, 255, 255));
         AdminButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AdminButton.setText("ADMIN");
+        AdminButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AdminButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                AdminButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                AdminButtonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout AdminLayout = new javax.swing.GroupLayout(Admin);
         Admin.setLayout(AdminLayout);
@@ -154,6 +213,17 @@ public class Order extends javax.swing.JFrame {
         CheckButton.setForeground(new java.awt.Color(255, 255, 255));
         CheckButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CheckButton.setText("CHECK");
+        CheckButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CheckButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CheckButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                CheckButtonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout CheckLayout = new javax.swing.GroupLayout(Check);
         Check.setLayout(CheckLayout);
@@ -197,7 +267,7 @@ public class Order extends javax.swing.JFrame {
                 .addComponent(Admin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Check, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
                 .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -210,120 +280,76 @@ public class Order extends javax.swing.JFrame {
 
         Generate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Generate.setText("Generate");
-
-        NormalButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        NormalButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        NormalButton.setText("Normal send");
-
-        javax.swing.GroupLayout normalLayout = new javax.swing.GroupLayout(normal);
-        normal.setLayout(normalLayout);
-        normalLayout.setHorizontalGroup(
-            normalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(NormalButton, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-        );
-        normalLayout.setVerticalGroup(
-            normalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(NormalButton, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-        );
-
-        FastButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        FastButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        FastButton.setText("Fast send");
-
-        javax.swing.GroupLayout FastLayout = new javax.swing.GroupLayout(Fast);
-        Fast.setLayout(FastLayout);
-        FastLayout.setHorizontalGroup(
-            FastLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(FastButton, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-        );
-        FastLayout.setVerticalGroup(
-            FastLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(FastButton, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-        );
-
-        jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Generate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GenerateActionPerformed(evt);
+            }
+        });
 
         Name.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        Name.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         Name.setMinimumSize(new java.awt.Dimension(35, 20));
         Name.setPreferredSize(new java.awt.Dimension(51, 20));
 
         Surname.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        Surname.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         Surname.setMinimumSize(new java.awt.Dimension(35, 20));
         Surname.setPreferredSize(new java.awt.Dimension(51, 20));
 
         Address.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        Address.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         Address.setMinimumSize(new java.awt.Dimension(35, 20));
         Address.setPreferredSize(new java.awt.Dimension(51, 20));
 
         Type.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        Type.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         Type.setMinimumSize(new java.awt.Dimension(35, 20));
         Type.setPreferredSize(new java.awt.Dimension(51, 20));
 
-        Box.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        Box.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        Box.setMinimumSize(new java.awt.Dimension(35, 20));
-        Box.setPreferredSize(new java.awt.Dimension(51, 20));
+        destination.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BOX SIZE", "XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL" }));
 
         javax.swing.GroupLayout DashboardLayout = new javax.swing.GroupLayout(Dashboard);
         Dashboard.setLayout(DashboardLayout);
         DashboardLayout.setHorizontalGroup(
             DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DashboardLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DashboardLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Address, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1, 0, 163, Short.MAX_VALUE)
-                            .addComponent(Surname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(HeadDash, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(DashboardLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(Type, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Box, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DashboardLayout.createSequentialGroup()
-                        .addGap(144, 144, 144)
-                        .addComponent(Generate, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DashboardLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(normal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Fast, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(HeadDash, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(Name, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                            .addComponent(Address, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Type, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Surname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(destination, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(box, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
+            .addGroup(DashboardLayout.createSequentialGroup()
+                .addGap(219, 219, 219)
+                .addComponent(Generate, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 219, Short.MAX_VALUE))
         );
         DashboardLayout.setVerticalGroup(
             DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DashboardLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(HeadDash, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Surname, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
+                .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Surname, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                    .addComponent(Name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(destination, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                    .addComponent(Address, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Address, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Type, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Box, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(normal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Fast, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(box, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                    .addComponent(Type, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(68, 68, 68)
                 .addComponent(Generate)
-                .addGap(43, 43, 43))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -337,7 +363,7 @@ public class Order extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, 0)
                     .addComponent(Menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 376, Short.MAX_VALUE)))
+                    .addGap(0, 526, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,10 +378,207 @@ public class Order extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    private void GenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerateActionPerformed
+        Name.getText();
+        Surname.getText();
+        Address.getText();
+        int box_cost = 0, cost = 0;
+        String d = destination.getText();
+        String b = box.getSelectedItem().toString();
+        String[] bkk = {"Bangkok", "Nakhon Pathom", "Nonthaburi", "Pathum Thani", "Samut Prakan", "Samut Sakhon"};
+
+        switch (b) {
+            case "XS":
+                box_cost = 8;
+                for (int i = 0; i < bkk.length; i++) {
+                    if (bkk[i].equalsIgnoreCase(d)) {
+                        cost = 50 + 20 + box_cost;
+                    } else {
+                        cost = 55 + 20 + box_cost;
+                    }
+                }
+                break;
+
+            case "S":
+                box_cost = 10;
+                for (int i = 0; i < bkk.length; i++) {
+                    if (bkk[i].equalsIgnoreCase(d)) {
+                        cost = 60 + 20 + box_cost;
+                    } else {
+                        cost = 75 + 20 + box_cost;
+                    }
+                }
+                break;
+
+            case "M":
+                box_cost = 15;
+                for (int i = 0; i < bkk.length; i++) {
+                    if (bkk[i].equalsIgnoreCase(d)) {
+                        cost = 75 + 20 + box_cost;
+                    } else {
+                        cost = 85 + 20 + box_cost;
+                    }
+                }
+                break;
+
+            case "L":
+                box_cost = 20;
+                for (int i = 0; i < bkk.length; i++) {
+                    if (bkk[i].equalsIgnoreCase(d)) {
+                        cost = 90 + 30 + box_cost;
+                    } else {
+                        cost = 110 + 30 + box_cost;
+                    }
+                }
+                break;
+
+            case "XL":
+                box_cost = 30;
+                for (int i = 0; i < bkk.length; i++) {
+                    if (bkk[i].equalsIgnoreCase(d)) {
+                        cost = 110 + 35 + box_cost;
+                    } else {
+                        cost = 130 + 35 + box_cost;
+                    }
+                }
+                break;
+
+            case "2XL":
+                box_cost = 40;
+                for (int i = 0; i < bkk.length; i++) {
+                    if (bkk[i].equalsIgnoreCase(d)) {
+                        cost = 210 + 40 + box_cost;
+                    } else {
+                        cost = 230 + 40 + box_cost;
+                    }
+                }
+                break;
+
+            case "3XL":
+                box_cost = 50;
+                for (int i = 0; i < bkk.length; i++) {
+                    if (bkk[i].equalsIgnoreCase(d)) {
+                        cost = 270 + 70 + box_cost;
+                    } else {
+                        cost = 300 + 70 + box_cost;
+                    }
+                }
+                break;
+
+            case "4XL":
+                box_cost = 60;
+                for (int i = 0; i < bkk.length; i++) {
+                    if (bkk[i].equalsIgnoreCase(d)) {
+                        cost = 360 + 90 + box_cost;
+                    } else {
+                        cost = 380 + 90 + box_cost;
+                    }
+                }
+                break;
+        }
+        String status =  "receive parcels" ;
+        track = Random_Track() ;
+        String sql = String.format("INSERT INTO orders VALUES('%s','%s','%s','%s','%s','%s','%d','%s') ",track,Name.getText(),Surname.getText(),Address.getText(),d,Type.getText(),cost,status);
+        try {
+            ConnectionDB db = new ConnectionDB();
+            if(db.execute(sql)){
+                JOptionPane.showMessageDialog(this, "Success");
+                this.setVisible(false);
+                OR_Detail ord = new OR_Detail();
+                ord.setVisible(true);}
+            else JOptionPane.showMessageDialog(this, "Fail");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Fail");
+
+        }
+    }//GEN-LAST:event_GenerateActionPerformed
+
+    private void OrderButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrderButtonMouseClicked
+        this.dispose();
+        Order order= new Order();
+        order.setVisible(true);
+    }//GEN-LAST:event_OrderButtonMouseClicked
+
+    private void OrderButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrderButtonMouseEntered
+        Orders.setBackground(new Color(125,109,151));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_OrderButtonMouseEntered
+
+    private void OrderButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrderButtonMouseExited
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_OrderButtonMouseExited
+
+    private void EmployeeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeButtonMouseClicked
+        this.dispose();
+        EM_Login lg= new EM_Login();
+        lg.setVisible(true);
+    }//GEN-LAST:event_EmployeeButtonMouseClicked
+
+    private void EmployeeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeButtonMouseEntered
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(125,109,151));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_EmployeeButtonMouseEntered
+
+    private void EmployeeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeButtonMouseExited
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_EmployeeButtonMouseExited
+
+    private void AdminButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminButtonMouseClicked
+        this.dispose();
+        AM_login lg= new AM_login();
+        lg.setVisible(true);
+    }//GEN-LAST:event_AdminButtonMouseClicked
+
+    private void AdminButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminButtonMouseEntered
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(125,109,151));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_AdminButtonMouseEntered
+
+    private void AdminButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminButtonMouseExited
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_AdminButtonMouseExited
+
+    private void CheckButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CheckButtonMouseClicked
+
+    private void CheckButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckButtonMouseEntered
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(125,109,151));
+    }//GEN-LAST:event_CheckButtonMouseEntered
+
+    private void CheckButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckButtonMouseExited
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_CheckButtonMouseExited
+
+    private void ExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_ExitMouseClicked
+
+/**
+ * @param args the command line arguments
+ */
+public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -369,13 +592,25 @@ public class Order extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Order.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Order
+
+.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Order.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Order
+
+.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Order.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Order
+
+.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Order.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Order
+
+.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -395,26 +630,23 @@ public class Order extends javax.swing.JFrame {
     private javax.swing.JTextField Address2;
     private javax.swing.JPanel Admin;
     private javax.swing.JLabel AdminButton;
-    private swing.SearchText Box;
     private javax.swing.JPanel Check;
     private javax.swing.JLabel CheckButton;
     private javax.swing.JPanel Dashboard;
     private javax.swing.JPanel Employee;
     private javax.swing.JLabel EmployeeButton;
     private javax.swing.JLabel Exit;
-    private javax.swing.JPanel Fast;
-    private javax.swing.JLabel FastButton;
     private javax.swing.JButton Generate;
     private javax.swing.JLabel Head;
     private javax.swing.JLabel HeadDash;
     private javax.swing.JPanel Menu;
     private swing.SearchText Name;
-    private javax.swing.JLabel NormalButton;
     private javax.swing.JLabel OrderButton;
     private javax.swing.JPanel Orders;
     private swing.SearchText Surname;
     private swing.SearchText Type;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JPanel normal;
+    private javax.swing.JComboBox<String> box;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private swing.SearchText destination;
     // End of variables declaration//GEN-END:variables
 }

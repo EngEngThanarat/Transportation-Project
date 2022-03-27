@@ -3,18 +3,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package trueproject;
-
+import java.awt.Color;
+import java.sql.*;
+import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 /**
  *
- * @author user
+ * @author niebz
  */
-public class AM_Login extends javax.swing.JFrame {
+public class AM_login extends javax.swing.JFrame {
 
     /**
-     * Creates new form AM_Login
+     * Creates new form AM_login
      */
-    public AM_Login() {
+    public AM_login() {
         initComponents();
+        ID.setHint("ID");
+        ID.setBorder(BorderFactory.createCompoundBorder(
+        ID.getBorder(), 
+        BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+        
+        password.setHint("Password");
+        password.setBorder(BorderFactory.createCompoundBorder(
+        password.getBorder(), 
+        BorderFactory.createEmptyBorder(5, 5, 5, 5)));
     }
 
     /**
@@ -38,19 +50,21 @@ public class AM_Login extends javax.swing.JFrame {
         Check = new javax.swing.JPanel();
         CheckButton = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        EM_menu = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        Detail = new javax.swing.JLabel();
-        EM_order = new javax.swing.JPanel();
-        orders = new javax.swing.JLabel();
-        EM_order1 = new javax.swing.JPanel();
-        employee = new javax.swing.JLabel();
+        LogIn = new javax.swing.JLabel();
+        Login = new javax.swing.JButton();
+        ID = new swing.SearchText();
+        password = new swing.password();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Menu.setBackground(new java.awt.Color(54, 33, 89));
 
         Exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trueproject/image/icons8_shutdown_32px.png"))); // NOI18N
+        Exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ExitMouseClicked(evt);
+            }
+        });
 
         Head.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         Head.setForeground(new java.awt.Color(255, 255, 255));
@@ -63,6 +77,17 @@ public class AM_Login extends javax.swing.JFrame {
         OrderButton.setForeground(new java.awt.Color(255, 255, 255));
         OrderButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         OrderButton.setText("NEW ORDERS");
+        OrderButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OrderButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                OrderButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                OrderButtonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout OrdersLayout = new javax.swing.GroupLayout(Orders);
         Orders.setLayout(OrdersLayout);
@@ -81,6 +106,17 @@ public class AM_Login extends javax.swing.JFrame {
         EmployeeButton.setForeground(new java.awt.Color(255, 255, 255));
         EmployeeButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         EmployeeButton.setText("EMPLOYEE");
+        EmployeeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EmployeeButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                EmployeeButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                EmployeeButtonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout EmployeeLayout = new javax.swing.GroupLayout(Employee);
         Employee.setLayout(EmployeeLayout);
@@ -99,6 +135,17 @@ public class AM_Login extends javax.swing.JFrame {
         AdminButton.setForeground(new java.awt.Color(255, 255, 255));
         AdminButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AdminButton.setText("ADMIN");
+        AdminButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AdminButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                AdminButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                AdminButtonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout AdminLayout = new javax.swing.GroupLayout(Admin);
         Admin.setLayout(AdminLayout);
@@ -117,6 +164,14 @@ public class AM_Login extends javax.swing.JFrame {
         CheckButton.setForeground(new java.awt.Color(255, 255, 255));
         CheckButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CheckButton.setText("CHECK");
+        CheckButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CheckButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                CheckButtonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout CheckLayout = new javax.swing.GroupLayout(Check);
         Check.setLayout(CheckLayout);
@@ -167,112 +222,56 @@ public class AM_Login extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        EM_menu.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        EM_menu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        EM_menu.setText("ADMIN MENU");
+        LogIn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        LogIn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LogIn.setText("ADMIN LOGIN");
 
-        jPanel1.setBackground(new java.awt.Color(85, 65, 118));
-        jPanel1.setPreferredSize(new java.awt.Dimension(344, 102));
+        Login.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Login.setText("Login");
+        Login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoginActionPerformed(evt);
+            }
+        });
 
-        Detail.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        Detail.setForeground(new java.awt.Color(255, 255, 255));
-        Detail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Detail.setText("DETAIL CUSTOMER");
+        ID.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        ID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IDActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Detail, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Detail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-        );
-
-        EM_order.setBackground(new java.awt.Color(85, 65, 118));
-        EM_order.setPreferredSize(new java.awt.Dimension(344, 102));
-
-        orders.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        orders.setForeground(new java.awt.Color(255, 255, 255));
-        orders.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        orders.setText("ORDERS");
-
-        javax.swing.GroupLayout EM_orderLayout = new javax.swing.GroupLayout(EM_order);
-        EM_order.setLayout(EM_orderLayout);
-        EM_orderLayout.setHorizontalGroup(
-            EM_orderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(EM_orderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(EM_orderLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(orders)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        EM_orderLayout.setVerticalGroup(
-            EM_orderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 102, Short.MAX_VALUE)
-            .addGroup(EM_orderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(EM_orderLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(orders)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        EM_order1.setBackground(new java.awt.Color(85, 65, 118));
-        EM_order1.setPreferredSize(new java.awt.Dimension(344, 102));
-
-        employee.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        employee.setForeground(new java.awt.Color(255, 255, 255));
-        employee.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        employee.setText("DETAIL EMPLOYEE");
-
-        javax.swing.GroupLayout EM_order1Layout = new javax.swing.GroupLayout(EM_order1);
-        EM_order1.setLayout(EM_order1Layout);
-        EM_order1Layout.setHorizontalGroup(
-            EM_order1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(EM_order1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(EM_order1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(employee)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        EM_order1Layout.setVerticalGroup(
-            EM_order1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 102, Short.MAX_VALUE)
-            .addGroup(EM_order1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(EM_order1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(employee)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        password.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(EM_menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+            .addComponent(LogIn, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
-                    .addComponent(EM_order, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
-                    .addComponent(EM_order1, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(200, 200, 200))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(ID, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                            .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(88, 88, 88))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addComponent(EM_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(EM_order, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(107, 107, 107)
+                .addComponent(ID, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(EM_order1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(Login)
+                .addContainerGap(168, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -293,6 +292,109 @@ public class AM_Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_IDActionPerformed
+    static String id;
+    private void LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginActionPerformed
+        id = ID.getText();
+        String pw = password.getText();
+        String sql = String.format("SELECT * FROM employee WHERE ID = '%s' AND Password = '%s'",id,pw) ;
+        String s ;
+        boolean a ;
+        try{ ConnectionDB cdb = new ConnectionDB();
+            ResultSet rs = cdb.get_resultset(sql); 
+            rs.next();
+            s = rs.getString(7); //count table
+            a=true;
+        }catch(Exception e){a=false;s = "";}
+        
+        if(a && s.equalsIgnoreCase("Admin")){
+                JOptionPane.showMessageDialog(this,"You are Complete");
+                this.dispose();
+                AM_menu menu= new AM_menu();
+                menu.setVisible(true);
+            }else JOptionPane.showMessageDialog(this,"No have Account");
+    }//GEN-LAST:event_LoginActionPerformed
+
+    private void OrderButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrderButtonMouseClicked
+        this.dispose();
+        Order order= new Order();
+        order.setVisible(true);
+    }//GEN-LAST:event_OrderButtonMouseClicked
+
+    private void OrderButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrderButtonMouseEntered
+        Orders.setBackground(new Color(125,109,151));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_OrderButtonMouseEntered
+
+    private void EmployeeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeButtonMouseClicked
+        this.dispose();
+        EM_Login lg= new EM_Login();
+        lg.setVisible(true);
+    }//GEN-LAST:event_EmployeeButtonMouseClicked
+
+    private void EmployeeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeButtonMouseEntered
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(125,109,151));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_EmployeeButtonMouseEntered
+
+    private void AdminButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminButtonMouseClicked
+        this.dispose();
+        AM_login lg= new AM_login();
+        lg.setVisible(true);
+    }//GEN-LAST:event_AdminButtonMouseClicked
+
+    private void AdminButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminButtonMouseEntered
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(125,109,151));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_AdminButtonMouseEntered
+
+    private void CheckButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckButtonMouseEntered
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(125,109,151));
+    }//GEN-LAST:event_CheckButtonMouseEntered
+
+    private void OrderButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrderButtonMouseExited
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_OrderButtonMouseExited
+
+    private void EmployeeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeButtonMouseExited
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_EmployeeButtonMouseExited
+
+    private void AdminButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminButtonMouseExited
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_AdminButtonMouseExited
+
+    private void CheckButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckButtonMouseExited
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_CheckButtonMouseExited
+
+    private void ExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_ExitMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -310,20 +412,20 @@ public class AM_Login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AM_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AM_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AM_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AM_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AM_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AM_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AM_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AM_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AM_Login().setVisible(true);
+                new AM_login().setVisible(true);
             }
         });
     }
@@ -333,20 +435,17 @@ public class AM_Login extends javax.swing.JFrame {
     private javax.swing.JLabel AdminButton;
     private javax.swing.JPanel Check;
     private javax.swing.JLabel CheckButton;
-    private javax.swing.JLabel Detail;
-    private javax.swing.JLabel EM_menu;
-    private javax.swing.JPanel EM_order;
-    private javax.swing.JPanel EM_order1;
     private javax.swing.JPanel Employee;
     private javax.swing.JLabel EmployeeButton;
     private javax.swing.JLabel Exit;
     private javax.swing.JLabel Head;
+    private swing.SearchText ID;
+    private javax.swing.JLabel LogIn;
+    private javax.swing.JButton Login;
     private javax.swing.JPanel Menu;
     private javax.swing.JLabel OrderButton;
     private javax.swing.JPanel Orders;
-    private javax.swing.JLabel employee;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel orders;
+    private swing.password password;
     // End of variables declaration//GEN-END:variables
 }

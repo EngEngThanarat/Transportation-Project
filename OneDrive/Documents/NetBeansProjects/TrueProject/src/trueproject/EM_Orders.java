@@ -4,7 +4,11 @@
  */
 package trueproject;
 
+import java.awt.Color;
+import java.sql.ResultSet;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -51,7 +55,6 @@ public class EM_Orders extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         EM_menu = new javax.swing.JLabel();
         Back = new javax.swing.JButton();
-        Update = new javax.swing.JButton();
         Receive = new javax.swing.JButton();
         Sending = new javax.swing.JButton();
         Complete = new javax.swing.JButton();
@@ -60,14 +63,19 @@ public class EM_Orders extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         ShowDB = new javax.swing.JTable();
-        Show = new javax.swing.JButton();
         Refresh = new javax.swing.JButton();
+        Search = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Menu.setBackground(new java.awt.Color(54, 33, 89));
 
         Exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trueproject/image/icons8_shutdown_32px.png"))); // NOI18N
+        Exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ExitMouseClicked(evt);
+            }
+        });
 
         Head.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         Head.setForeground(new java.awt.Color(255, 255, 255));
@@ -80,6 +88,17 @@ public class EM_Orders extends javax.swing.JFrame {
         OrderButton.setForeground(new java.awt.Color(255, 255, 255));
         OrderButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         OrderButton.setText("NEW ORDERS");
+        OrderButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OrderButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                OrderButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                OrderButtonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout OrdersLayout = new javax.swing.GroupLayout(Orders);
         Orders.setLayout(OrdersLayout);
@@ -98,6 +117,17 @@ public class EM_Orders extends javax.swing.JFrame {
         EmployeeButton.setForeground(new java.awt.Color(255, 255, 255));
         EmployeeButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         EmployeeButton.setText("EMPLOYEE");
+        EmployeeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EmployeeButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                EmployeeButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                EmployeeButtonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout EmployeeLayout = new javax.swing.GroupLayout(Employee);
         Employee.setLayout(EmployeeLayout);
@@ -116,6 +146,17 @@ public class EM_Orders extends javax.swing.JFrame {
         AdminButton.setForeground(new java.awt.Color(255, 255, 255));
         AdminButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AdminButton.setText("ADMIN");
+        AdminButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AdminButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                AdminButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                AdminButtonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout AdminLayout = new javax.swing.GroupLayout(Admin);
         Admin.setLayout(AdminLayout);
@@ -134,6 +175,17 @@ public class EM_Orders extends javax.swing.JFrame {
         CheckButton.setForeground(new java.awt.Color(255, 255, 255));
         CheckButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CheckButton.setText("CHECK");
+        CheckButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CheckButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CheckButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                CheckButtonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout CheckLayout = new javax.swing.GroupLayout(Check);
         Check.setLayout(CheckLayout);
@@ -183,35 +235,58 @@ public class EM_Orders extends javax.swing.JFrame {
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         EM_menu.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         EM_menu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         EM_menu.setText("ORDERS");
+        jPanel2.add(EM_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 32, 526, 40));
 
         Back.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Back.setText("Back");
-
-        Update.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Update.setText("Update");
+        Back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 448, 95, -1));
 
         Receive.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Receive.setText("Receive");
+        Receive.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReceiveActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Receive, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 94, -1));
 
         Sending.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Sending.setText("Sending");
+        Sending.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SendingActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Sending, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 94, -1));
 
         Complete.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Complete.setText("Complete");
+        Complete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CompleteActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Complete, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 390, 94, -1));
 
         Name.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        Name.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         Name.setMinimumSize(new java.awt.Dimension(35, 20));
         Name.setPreferredSize(new java.awt.Dimension(51, 20));
+        jPanel2.add(Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 163, 36));
 
         Track.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        Track.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         Track.setMinimumSize(new java.awt.Dimension(35, 20));
         Track.setPreferredSize(new java.awt.Dimension(51, 20));
+        jPanel2.add(Track, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 230, 163, 36));
 
         ShowDB.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -230,82 +305,31 @@ public class EM_Orders extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        Show.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Show.setText("Show");
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 84, -1, -1));
 
         Refresh.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Refresh.setText("Refresh");
+        Refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RefreshActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(426, 448, 94, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(EM_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(Back, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(Receive, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(Sending, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(Refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Complete, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Update, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Track, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(126, 126, 126)
-                        .addComponent(Show, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(92, 92, 92))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(EM_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Track, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(Show)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Receive)
-                    .addComponent(Sending)
-                    .addComponent(Complete))
-                .addGap(36, 36, 36)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Back)
-                    .addComponent(Update)
-                    .addComponent(Refresh))
-                .addContainerGap())
-        );
+        Search.setText("Search");
+        Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Search, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 278, 94, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -324,6 +348,184 @@ public class EM_Orders extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void setTable(){
+        String colum[] = {"Track" ,"Name","Surname","Address","destination","Parcel Type","Cost","Status"};
+        DefaultTableModel model = new DefaultTableModel(colum,0);
+        String t = Track.getText();
+        String n = Name.getText();
+ 
+        try {
+            ConnectionDB db = new ConnectionDB();
+            String track_no = String.format("SELECT * FROM orders ");
+            ResultSet rs = db.get_resultset(track_no);
+            while(rs.next()){
+                String row[] = {rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)};
+                model.addRow(row);
+            }
+            ShowDB.setModel(model);
+            db.disconnect();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }
+    
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        this.dispose();
+        EM_Menu menu = new EM_Menu();
+        menu.setVisible(true);
+    }//GEN-LAST:event_BackActionPerformed
+
+    private void RefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshActionPerformed
+        setTable();
+    }//GEN-LAST:event_RefreshActionPerformed
+
+    private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
+        String colum[] = {"Track" ,"Name","Surname","Address","destination","Parcel Type","Cost","Status"};
+        DefaultTableModel model = new DefaultTableModel(colum,0);
+        String t = Track.getText();
+        String n = Name.getText();
+        try {
+            ConnectionDB db = new ConnectionDB();
+            String track_no = String.format("SELECT * FROM orders WHERE ID_Track = '%s' AND Name = '%s'",t,n );
+            ResultSet rs = db.get_resultset(track_no);
+            while(rs.next()){
+                String row[] = {rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)};
+                model.addRow(row);
+            }
+            ShowDB.setModel(model);
+            db.disconnect();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_SearchActionPerformed
+
+    private void ReceiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReceiveActionPerformed
+        String t = Track.getText();
+        String n = Name.getText();
+        String receive = "receive" ;
+        int selection[] = ShowDB.getSelectedRows();
+        try {
+            ConnectionDB db = new ConnectionDB();
+            for(int i=0;i < selection.length; i++){
+            String track_no = String.format("UPDATE orders SET  Status = '%s' WHERE ID_track = '%s' ",receive,ShowDB.getValueAt(selection[i],0));
+            db.execute(track_no);}
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_ReceiveActionPerformed
+
+    private void SendingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendingActionPerformed
+        String t = Track.getText();
+        String n = Name.getText();
+        int selection[] = ShowDB.getSelectedRows();
+        String send = "Sending" ;
+        try {
+            ConnectionDB db = new ConnectionDB();
+            for(int i=0;i < selection.length; i++){
+            String track_no = String.format("UPDATE orders SET  Status = '%s' WHERE ID_track = '%s' ",send,ShowDB.getValueAt(selection[i],0));
+            db.execute(track_no);}
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_SendingActionPerformed
+
+    private void CompleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompleteActionPerformed
+        String t = Track.getText();
+        String n = Name.getText();
+        int selection[] = ShowDB.getSelectedRows();
+        String complete = "Complete" ;
+        try {
+            ConnectionDB db = new ConnectionDB();
+            for(int i=0;i < selection.length; i++){
+            String track_no = String.format("UPDATE orders SET  Status = '%s' WHERE ID_track = '%s' ",complete,ShowDB.getValueAt(selection[i],0));
+            db.execute(track_no);}
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_CompleteActionPerformed
+
+    private void OrderButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrderButtonMouseClicked
+        this.dispose();
+        Order order= new Order();
+        order.setVisible(true);
+    }//GEN-LAST:event_OrderButtonMouseClicked
+
+    private void OrderButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrderButtonMouseEntered
+        Orders.setBackground(new Color(125,109,151));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_OrderButtonMouseEntered
+
+    private void OrderButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrderButtonMouseExited
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_OrderButtonMouseExited
+
+    private void EmployeeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeButtonMouseClicked
+        this.dispose();
+        EM_Login lg= new EM_Login();
+        lg.setVisible(true);
+    }//GEN-LAST:event_EmployeeButtonMouseClicked
+
+    private void EmployeeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeButtonMouseEntered
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(125,109,151));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_EmployeeButtonMouseEntered
+
+    private void EmployeeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeButtonMouseExited
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_EmployeeButtonMouseExited
+
+    private void AdminButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminButtonMouseClicked
+        this.dispose();
+        AM_login lg= new AM_login();
+        lg.setVisible(true);
+    }//GEN-LAST:event_AdminButtonMouseClicked
+
+    private void AdminButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminButtonMouseEntered
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(125,109,151));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_AdminButtonMouseEntered
+
+    private void AdminButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminButtonMouseExited
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_AdminButtonMouseExited
+
+    private void CheckButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CheckButtonMouseClicked
+
+    private void CheckButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckButtonMouseEntered
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(125,109,151));
+    }//GEN-LAST:event_CheckButtonMouseEntered
+
+    private void CheckButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckButtonMouseExited
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_CheckButtonMouseExited
+
+    private void ExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_ExitMouseClicked
 
     /**
      * @param args the command line arguments
@@ -379,11 +581,10 @@ public class EM_Orders extends javax.swing.JFrame {
     private javax.swing.JPanel Orders;
     private javax.swing.JButton Receive;
     private javax.swing.JButton Refresh;
+    private javax.swing.JButton Search;
     private javax.swing.JButton Sending;
-    private javax.swing.JButton Show;
     private javax.swing.JTable ShowDB;
     private swing.SearchText Track;
-    private javax.swing.JButton Update;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;

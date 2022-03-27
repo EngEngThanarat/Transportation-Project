@@ -4,6 +4,8 @@
  */
 package trueproject;
 
+import java.awt.Color;
+
 /**
  *
  * @author user
@@ -46,6 +48,11 @@ public class Main extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(54, 33, 89));
 
         Exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trueproject/image/icons8_shutdown_32px.png"))); // NOI18N
+        Exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ExitMouseClicked(evt);
+            }
+        });
 
         Head.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         Head.setForeground(new java.awt.Color(255, 255, 255));
@@ -58,6 +65,17 @@ public class Main extends javax.swing.JFrame {
         OrderButton.setForeground(new java.awt.Color(255, 255, 255));
         OrderButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         OrderButton.setText("NEW ORDERS");
+        OrderButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OrderButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                OrderButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                OrderButtonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout OrdersLayout = new javax.swing.GroupLayout(Orders);
         Orders.setLayout(OrdersLayout);
@@ -76,6 +94,17 @@ public class Main extends javax.swing.JFrame {
         EmployeeButton.setForeground(new java.awt.Color(255, 255, 255));
         EmployeeButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         EmployeeButton.setText("EMPLOYEE");
+        EmployeeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EmployeeButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                EmployeeButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                EmployeeButtonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout EmployeeLayout = new javax.swing.GroupLayout(Employee);
         Employee.setLayout(EmployeeLayout);
@@ -94,6 +123,17 @@ public class Main extends javax.swing.JFrame {
         AdminButton.setForeground(new java.awt.Color(255, 255, 255));
         AdminButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AdminButton.setText("ADMIN");
+        AdminButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AdminButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                AdminButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                AdminButtonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout AdminLayout = new javax.swing.GroupLayout(Admin);
         Admin.setLayout(AdminLayout);
@@ -112,6 +152,17 @@ public class Main extends javax.swing.JFrame {
         CheckButton.setForeground(new java.awt.Color(255, 255, 255));
         CheckButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CheckButton.setText("CHECK");
+        CheckButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CheckButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CheckButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                CheckButtonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout CheckLayout = new javax.swing.GroupLayout(Check);
         Check.setLayout(CheckLayout);
@@ -190,6 +241,89 @@ public class Main extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void OrderButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrderButtonMouseClicked
+        this.dispose();
+        Order order= new Order();
+        order.setVisible(true);
+    }//GEN-LAST:event_OrderButtonMouseClicked
+
+    private void OrderButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrderButtonMouseEntered
+        // TODO add your handling code here:
+        Orders.setBackground(new Color(125,109,151));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_OrderButtonMouseEntered
+
+    private void OrderButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrderButtonMouseExited
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_OrderButtonMouseExited
+
+    private void EmployeeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeButtonMouseEntered
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(125,109,151));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_EmployeeButtonMouseEntered
+
+    private void EmployeeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeButtonMouseClicked
+        this.dispose();
+        EM_Login lg= new EM_Login();
+        lg.setVisible(true);
+    }//GEN-LAST:event_EmployeeButtonMouseClicked
+
+    private void AdminButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminButtonMouseClicked
+        this.dispose();
+        AM_login lg= new AM_login();
+        lg.setVisible(true);
+    }//GEN-LAST:event_AdminButtonMouseClicked
+
+    private void AdminButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminButtonMouseEntered
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(125,109,151));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_AdminButtonMouseEntered
+
+    private void CheckButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckButtonMouseClicked
+
+    }//GEN-LAST:event_CheckButtonMouseClicked
+
+    private void CheckButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckButtonMouseEntered
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(125,109,151));
+    }//GEN-LAST:event_CheckButtonMouseEntered
+
+    private void ExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_ExitMouseClicked
+
+    private void EmployeeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeButtonMouseExited
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_EmployeeButtonMouseExited
+
+    private void AdminButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminButtonMouseExited
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_AdminButtonMouseExited
+
+    private void CheckButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckButtonMouseExited
+        Orders.setBackground(new Color(85,65,118));
+        Employee.setBackground(new Color(85,65,118));
+        Admin.setBackground(new Color(85,65,118));
+        Check.setBackground(new Color(85,65,118));
+    }//GEN-LAST:event_CheckButtonMouseExited
 
     /**
      * @param args the command line arguments

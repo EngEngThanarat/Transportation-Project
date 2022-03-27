@@ -3,34 +3,52 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package trueproject;
-
 import java.awt.Color;
 import java.sql.ResultSet;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
-
+import javax.swing.table.DefaultTableModel;
 /**
  *
- * @author user
+ * @author niebz
  */
-public class EM_Login extends javax.swing.JFrame {
+public class AM_Order extends javax.swing.JFrame {
 
     /**
-     * Creates new form EmploLogin
+     * Creates new form AM_Order
      */
-    public EM_Login() {
+    public AM_Order() {
         initComponents();
-        ID.setHint("ID");
-        ID.setBorder(BorderFactory.createCompoundBorder(
-        ID.getBorder(), 
+        Name.setHint("Your Name");
+        Name.setBorder(BorderFactory.createCompoundBorder(
+        Name.getBorder(), 
         BorderFactory.createEmptyBorder(5, 5, 5, 5)));
         
-        password.setHint("Password");
-        password.setBorder(BorderFactory.createCompoundBorder(
-        password.getBorder(), 
+        Track.setHint("Track");
+        Track.setBorder(BorderFactory.createCompoundBorder(
+        Track.getBorder(), 
         BorderFactory.createEmptyBorder(5, 5, 5, 5)));
     }
-
+    private void setTable(){
+        String colum[] = {"Track" ,"Name","Surname","Address","destination","Parcel Type","Cost","Status"};
+        DefaultTableModel model = new DefaultTableModel(colum,0);
+        String t = Track.getText();
+        String n = Name.getText();
+ 
+        try {
+            ConnectionDB db = new ConnectionDB();
+            String track_no = String.format("SELECT * FROM orders ");
+            ResultSet rs = db.get_resultset(track_no);
+            while(rs.next()){
+                String row[] = {rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)};
+                model.addRow(row);
+            }
+            ShowDB.setModel(model);
+            db.disconnect();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,10 +70,18 @@ public class EM_Login extends javax.swing.JFrame {
         Check = new javax.swing.JPanel();
         CheckButton = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        LogIn = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        ID = new swing.SearchText();
-        password = new swing.password();
+        EM_menu = new javax.swing.JLabel();
+        Back = new javax.swing.JButton();
+        Receive = new javax.swing.JButton();
+        Sending = new javax.swing.JButton();
+        Complete = new javax.swing.JButton();
+        Name = new swing.SearchText();
+        Track = new swing.SearchText();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        ShowDB = new javax.swing.JTable();
+        Refresh = new javax.swing.JButton();
+        Search = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -220,64 +246,107 @@ public class EM_Login extends javax.swing.JFrame {
                 .addComponent(Admin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Check, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
                 .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        LogIn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        LogIn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LogIn.setText("EMPLOYEE LOGIN");
+        EM_menu.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        EM_menu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        EM_menu.setText("ORDERS");
+        jPanel2.add(EM_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 32, 526, 40));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText("Login");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Back.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Back.setText("Back");
+        Back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BackActionPerformed(evt);
             }
         });
+        jPanel2.add(Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 448, 95, -1));
 
-        ID.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        ID.addActionListener(new java.awt.event.ActionListener() {
+        Receive.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Receive.setText("Receive");
+        Receive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IDActionPerformed(evt);
+                ReceiveActionPerformed(evt);
             }
         });
+        jPanel2.add(Receive, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 94, -1));
 
-        password.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        Sending.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Sending.setText("Sending");
+        Sending.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SendingActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Sending, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 94, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(LogIn, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(200, 200, 200))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(ID, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-                            .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(88, 88, 88))))
+        Complete.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Complete.setText("Complete");
+        Complete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CompleteActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Complete, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 390, 94, -1));
+
+        Name.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        Name.setMinimumSize(new java.awt.Dimension(35, 20));
+        Name.setPreferredSize(new java.awt.Dimension(51, 20));
+        jPanel2.add(Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 163, 36));
+
+        Track.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        Track.setMinimumSize(new java.awt.Dimension(35, 20));
+        Track.setPreferredSize(new java.awt.Dimension(51, 20));
+        jPanel2.add(Track, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 230, 163, 36));
+
+        ShowDB.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(ShowDB);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(LogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(107, 107, 107)
-                .addComponent(ID, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(jButton1)
-                .addContainerGap(168, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
+
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 84, -1, -1));
+
+        Refresh.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Refresh.setText("Refresh");
+        Refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RefreshActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(426, 448, 94, -1));
+
+        Search.setText("Search");
+        Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Search, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 278, 94, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -297,33 +366,14 @@ public class EM_Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_IDActionPerformed
-    static String id , pw;
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        id = ID.getText();
-        pw = password.getText();
-        String sql = String.format("SELECT * FROM employee WHERE ID = '%s' AND Password = '%s'",id,pw) ;
-        String s ;
-        boolean a ;
-        try{ ConnectionDB cdb = new ConnectionDB();
-            ResultSet rs = cdb.get_resultset(sql); 
-            rs.next();
-            s = rs.getString(7); //count table
-            a=true;
-        }catch(Exception e){a=false;s = "";}
-        
-        if(a && s.equalsIgnoreCase("Employee")){
-                JOptionPane.showMessageDialog(this,"You are Complete");
-                this.setVisible(false);
-                EM_Menu menu= new EM_Menu();
-                menu.setVisible(true);
-            }else JOptionPane.showMessageDialog(this,"No have Account");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void ExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_ExitMouseClicked
 
     private void OrderButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrderButtonMouseClicked
-        // TODO add your handling code here:
+        this.dispose();
+        Order order= new Order();
+        order.setVisible(true);
     }//GEN-LAST:event_OrderButtonMouseClicked
 
     private void OrderButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrderButtonMouseEntered
@@ -341,7 +391,9 @@ public class EM_Login extends javax.swing.JFrame {
     }//GEN-LAST:event_OrderButtonMouseExited
 
     private void EmployeeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeButtonMouseClicked
-        // TODO add your handling code here:
+        this.dispose();
+        EM_Login lg= new EM_Login();
+        lg.setVisible(true);
     }//GEN-LAST:event_EmployeeButtonMouseClicked
 
     private void EmployeeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeButtonMouseEntered
@@ -360,7 +412,7 @@ public class EM_Login extends javax.swing.JFrame {
 
     private void AdminButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminButtonMouseClicked
         this.dispose();
-        AM_login lg = new AM_login();
+        AM_login lg= new AM_login();
         lg.setVisible(true);
     }//GEN-LAST:event_AdminButtonMouseClicked
 
@@ -396,9 +448,80 @@ public class EM_Login extends javax.swing.JFrame {
         Check.setBackground(new Color(85,65,118));
     }//GEN-LAST:event_CheckButtonMouseExited
 
-    private void ExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_ExitMouseClicked
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        this.dispose();
+        AM_menu menu = new AM_menu();
+        menu.setVisible(true);
+    }//GEN-LAST:event_BackActionPerformed
+
+    private void ReceiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReceiveActionPerformed
+        String t = Track.getText();
+        String n = Name.getText();
+        String receive = "receive" ;
+        int selection[] = ShowDB.getSelectedRows();
+        try {
+            ConnectionDB db = new ConnectionDB();
+            for(int i=0;i < selection.length; i++){
+                String track_no = String.format("UPDATE orders SET  Status = '%s' WHERE ID_track = '%s' ",receive,ShowDB.getValueAt(selection[i],0));
+                db.execute(track_no);}
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_ReceiveActionPerformed
+
+    private void SendingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendingActionPerformed
+        String t = Track.getText();
+        String n = Name.getText();
+        int selection[] = ShowDB.getSelectedRows();
+        String send = "Sending" ;
+        try {
+            ConnectionDB db = new ConnectionDB();
+            for(int i=0;i < selection.length; i++){
+                String track_no = String.format("UPDATE orders SET  Status = '%s' WHERE ID_track = '%s' ",send,ShowDB.getValueAt(selection[i],0));
+                db.execute(track_no);}
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_SendingActionPerformed
+
+    private void CompleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompleteActionPerformed
+        String t = Track.getText();
+        String n = Name.getText();
+        int selection[] = ShowDB.getSelectedRows();
+        String complete = "Complete" ;
+        try {
+            ConnectionDB db = new ConnectionDB();
+            for(int i=0;i < selection.length; i++){
+                String track_no = String.format("UPDATE orders SET  Status = '%s' WHERE ID_track = '%s' ",complete,ShowDB.getValueAt(selection[i],0));
+                db.execute(track_no);}
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_CompleteActionPerformed
+
+    private void RefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshActionPerformed
+        setTable();
+    }//GEN-LAST:event_RefreshActionPerformed
+
+    private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
+        String colum[] = {"Track" ,"Name","Surname","Address","destination","Parcel Type","Cost","Status"};
+        DefaultTableModel model = new DefaultTableModel(colum,0);
+        String t = Track.getText();
+        String n = Name.getText();
+        try {
+            ConnectionDB db = new ConnectionDB();
+            String track_no = String.format("SELECT * FROM orders WHERE ID_Track = '%s' AND Name = '%s'",t,n );
+            ResultSet rs = db.get_resultset(track_no);
+            while(rs.next()){
+                String row[] = {rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)};
+                model.addRow(row);
+            }
+            ShowDB.setModel(model);
+            db.disconnect();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_SearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -417,21 +540,20 @@ public class EM_Login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EM_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AM_Order.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EM_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AM_Order.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EM_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AM_Order.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EM_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AM_Order.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EM_Login().setVisible(true);
+                new AM_Order().setVisible(true);
             }
         });
     }
@@ -439,19 +561,27 @@ public class EM_Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Admin;
     private javax.swing.JLabel AdminButton;
+    private javax.swing.JButton Back;
     private javax.swing.JPanel Check;
     private javax.swing.JLabel CheckButton;
+    private javax.swing.JButton Complete;
+    private javax.swing.JLabel EM_menu;
     private javax.swing.JPanel Employee;
     private javax.swing.JLabel EmployeeButton;
     private javax.swing.JLabel Exit;
     private javax.swing.JLabel Head;
-    private swing.SearchText ID;
-    private javax.swing.JLabel LogIn;
     private javax.swing.JPanel Menu;
+    private swing.SearchText Name;
     private javax.swing.JLabel OrderButton;
     private javax.swing.JPanel Orders;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton Receive;
+    private javax.swing.JButton Refresh;
+    private javax.swing.JButton Search;
+    private javax.swing.JButton Sending;
+    private javax.swing.JTable ShowDB;
+    private swing.SearchText Track;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private swing.password password;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
