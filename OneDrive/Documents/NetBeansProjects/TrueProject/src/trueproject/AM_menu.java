@@ -495,7 +495,7 @@ public class AM_menu extends javax.swing.JFrame {
 
     private void ordersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ordersMouseClicked
         this.dispose();
-        EM_Orders or= new EM_Orders();
+        AM_Order or= new AM_Order();
         or.setVisible(true);
     }//GEN-LAST:event_ordersMouseClicked
 
