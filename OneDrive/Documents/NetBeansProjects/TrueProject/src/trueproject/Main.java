@@ -37,8 +37,6 @@ public class Main extends javax.swing.JFrame {
         EmployeeButton = new javax.swing.JLabel();
         Admin = new javax.swing.JPanel();
         AdminButton = new javax.swing.JLabel();
-        Check = new javax.swing.JPanel();
-        CheckButton = new javax.swing.JLabel();
         dashboard = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -146,35 +144,6 @@ public class Main extends javax.swing.JFrame {
             .addComponent(AdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
         );
 
-        Check.setBackground(new java.awt.Color(85, 65, 118));
-
-        CheckButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        CheckButton.setForeground(new java.awt.Color(255, 255, 255));
-        CheckButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        CheckButton.setText("CHECK");
-        CheckButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CheckButtonMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                CheckButtonMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                CheckButtonMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout CheckLayout = new javax.swing.GroupLayout(Check);
-        Check.setLayout(CheckLayout);
-        CheckLayout.setHorizontalGroup(
-            CheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(CheckButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        CheckLayout.setVerticalGroup(
-            CheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(CheckButton, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -182,7 +151,6 @@ public class Main extends javax.swing.JFrame {
             .addComponent(Orders, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Employee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Admin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Check, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -204,9 +172,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(Employee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Admin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Check, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                 .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -217,7 +183,7 @@ public class Main extends javax.swing.JFrame {
         dashboard.setLayout(dashboardLayout);
         dashboardLayout.setHorizontalGroup(
             dashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 492, Short.MAX_VALUE)
+            .addGap(0, 381, Short.MAX_VALUE)
         );
         dashboardLayout.setVerticalGroup(
             dashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,21 +219,18 @@ public class Main extends javax.swing.JFrame {
         Orders.setBackground(new Color(125,109,151));
         Employee.setBackground(new Color(85,65,118));
         Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(85,65,118));
     }//GEN-LAST:event_OrderButtonMouseEntered
 
     private void OrderButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrderButtonMouseExited
         Orders.setBackground(new Color(85,65,118));
         Employee.setBackground(new Color(85,65,118));
         Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(85,65,118));
     }//GEN-LAST:event_OrderButtonMouseExited
 
     private void EmployeeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeButtonMouseEntered
         Orders.setBackground(new Color(85,65,118));
         Employee.setBackground(new Color(125,109,151));
         Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(85,65,118));
     }//GEN-LAST:event_EmployeeButtonMouseEntered
 
     private void EmployeeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeButtonMouseClicked
@@ -286,19 +249,7 @@ public class Main extends javax.swing.JFrame {
         Orders.setBackground(new Color(85,65,118));
         Employee.setBackground(new Color(85,65,118));
         Admin.setBackground(new Color(125,109,151));
-        Check.setBackground(new Color(85,65,118));
     }//GEN-LAST:event_AdminButtonMouseEntered
-
-    private void CheckButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckButtonMouseClicked
-
-    }//GEN-LAST:event_CheckButtonMouseClicked
-
-    private void CheckButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckButtonMouseEntered
-        Orders.setBackground(new Color(85,65,118));
-        Employee.setBackground(new Color(85,65,118));
-        Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(125,109,151));
-    }//GEN-LAST:event_CheckButtonMouseEntered
 
     private void ExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitMouseClicked
         System.exit(0);
@@ -308,22 +259,13 @@ public class Main extends javax.swing.JFrame {
         Orders.setBackground(new Color(85,65,118));
         Employee.setBackground(new Color(85,65,118));
         Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(85,65,118));
     }//GEN-LAST:event_EmployeeButtonMouseExited
 
     private void AdminButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminButtonMouseExited
         Orders.setBackground(new Color(85,65,118));
         Employee.setBackground(new Color(85,65,118));
         Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(85,65,118));
     }//GEN-LAST:event_AdminButtonMouseExited
-
-    private void CheckButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckButtonMouseExited
-        Orders.setBackground(new Color(85,65,118));
-        Employee.setBackground(new Color(85,65,118));
-        Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(85,65,118));
-    }//GEN-LAST:event_CheckButtonMouseExited
 
     /**
      * @param args the command line arguments
@@ -364,8 +306,6 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Admin;
     private javax.swing.JLabel AdminButton;
-    private javax.swing.JPanel Check;
-    private javax.swing.JLabel CheckButton;
     private javax.swing.JPanel Employee;
     private javax.swing.JLabel EmployeeButton;
     private javax.swing.JLabel Exit;

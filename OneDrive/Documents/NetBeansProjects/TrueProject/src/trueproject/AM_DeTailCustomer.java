@@ -26,13 +26,13 @@ public class AM_DetailCustomer extends javax.swing.JFrame {
         search.getBorder(), 
         BorderFactory.createEmptyBorder(5, 5, 5, 5)));
     }
-private void setTable(){
+    private void setTable(){
         String colum[] = {"Name","Surname","Address"};
         DefaultTableModel model = new DefaultTableModel(colum,0);
         String s = search.getText();
         try {
             ConnectionDB db = new ConnectionDB();
-            String Search = String.format("SELECT Name , Surname , address FROM orders WHERE Name = '%s'",s);
+            String Search = "SELECT Name , Surname , address FROM orders WHERE Name LIKE '"+s+"%' or address LIKE '"+s+"%'";
             ResultSet rs = db.get_resultset(Search);
             while(rs.next()){
                 String row[] = {rs.getString(1),rs.getString(2),rs.getString(3)};
@@ -62,8 +62,6 @@ private void setTable(){
         EmployeeButton = new javax.swing.JLabel();
         Admin = new javax.swing.JPanel();
         AdminButton = new javax.swing.JLabel();
-        Check = new javax.swing.JPanel();
-        CheckButton = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         Detail = new javax.swing.JLabel();
         back = new javax.swing.JButton();
@@ -177,35 +175,6 @@ private void setTable(){
             .addComponent(AdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
         );
 
-        Check.setBackground(new java.awt.Color(85, 65, 118));
-
-        CheckButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        CheckButton.setForeground(new java.awt.Color(255, 255, 255));
-        CheckButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        CheckButton.setText("CHECK");
-        CheckButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CheckButtonMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                CheckButtonMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                CheckButtonMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout CheckLayout = new javax.swing.GroupLayout(Check);
-        Check.setLayout(CheckLayout);
-        CheckLayout.setHorizontalGroup(
-            CheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(CheckButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        CheckLayout.setVerticalGroup(
-            CheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(CheckButton, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout MenuLayout = new javax.swing.GroupLayout(Menu);
         Menu.setLayout(MenuLayout);
         MenuLayout.setHorizontalGroup(
@@ -213,7 +182,6 @@ private void setTable(){
             .addComponent(Orders, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Employee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Admin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Check, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(MenuLayout.createSequentialGroup()
                 .addGroup(MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MenuLayout.createSequentialGroup()
@@ -235,8 +203,6 @@ private void setTable(){
                 .addComponent(Employee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Admin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Check, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -259,7 +225,7 @@ private void setTable(){
         });
         jPanel2.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 433, 104, 31));
 
-        search.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        search.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         jPanel2.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 388, 338, 27));
 
         Show.setModel(new javax.swing.table.DefaultTableModel(
@@ -324,7 +290,7 @@ private void setTable(){
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
         );
 
         pack();
@@ -350,14 +316,12 @@ private void setTable(){
         Orders.setBackground(new Color(125,109,151));
         Employee.setBackground(new Color(85,65,118));
         Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(85,65,118));
     }//GEN-LAST:event_OrderButtonMouseEntered
 
     private void OrderButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrderButtonMouseExited
         Orders.setBackground(new Color(85,65,118));
         Employee.setBackground(new Color(85,65,118));
         Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(85,65,118));
     }//GEN-LAST:event_OrderButtonMouseExited
 
     private void EmployeeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeButtonMouseClicked
@@ -370,14 +334,12 @@ private void setTable(){
         Orders.setBackground(new Color(85,65,118));
         Employee.setBackground(new Color(125,109,151));
         Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(85,65,118));
     }//GEN-LAST:event_EmployeeButtonMouseEntered
 
     private void EmployeeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeButtonMouseExited
         Orders.setBackground(new Color(85,65,118));
         Employee.setBackground(new Color(85,65,118));
         Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(85,65,118));
     }//GEN-LAST:event_EmployeeButtonMouseExited
 
     private void AdminButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminButtonMouseClicked
@@ -390,33 +352,13 @@ private void setTable(){
         Orders.setBackground(new Color(85,65,118));
         Employee.setBackground(new Color(85,65,118));
         Admin.setBackground(new Color(125,109,151));
-        Check.setBackground(new Color(85,65,118));
     }//GEN-LAST:event_AdminButtonMouseEntered
 
     private void AdminButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminButtonMouseExited
         Orders.setBackground(new Color(85,65,118));
         Employee.setBackground(new Color(85,65,118));
         Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(85,65,118));
     }//GEN-LAST:event_AdminButtonMouseExited
-
-    private void CheckButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckButtonMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CheckButtonMouseClicked
-
-    private void CheckButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckButtonMouseEntered
-        Orders.setBackground(new Color(85,65,118));
-        Employee.setBackground(new Color(85,65,118));
-        Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(125,109,151));
-    }//GEN-LAST:event_CheckButtonMouseEntered
-
-    private void CheckButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckButtonMouseExited
-        Orders.setBackground(new Color(85,65,118));
-        Employee.setBackground(new Color(85,65,118));
-        Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(85,65,118));
-    }//GEN-LAST:event_CheckButtonMouseExited
 
     private void ExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitMouseClicked
         System.exit(0);
@@ -480,8 +422,6 @@ private void setTable(){
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Admin;
     private javax.swing.JLabel AdminButton;
-    private javax.swing.JPanel Check;
-    private javax.swing.JLabel CheckButton;
     private javax.swing.JLabel Detail;
     private javax.swing.JPanel Employee;
     private javax.swing.JLabel EmployeeButton;

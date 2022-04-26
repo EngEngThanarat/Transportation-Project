@@ -73,8 +73,6 @@ public class EM_Detail extends javax.swing.JFrame {
         EmployeeButton = new javax.swing.JLabel();
         Admin = new javax.swing.JPanel();
         AdminButton = new javax.swing.JLabel();
-        Check = new javax.swing.JPanel();
-        CheckButton = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         Detail = new javax.swing.JLabel();
         Name = new javax.swing.JLabel();
@@ -82,6 +80,10 @@ public class EM_Detail extends javax.swing.JFrame {
         Age = new javax.swing.JLabel();
         Address = new javax.swing.JLabel();
         back = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -191,35 +193,6 @@ public class EM_Detail extends javax.swing.JFrame {
             .addComponent(AdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
         );
 
-        Check.setBackground(new java.awt.Color(85, 65, 118));
-
-        CheckButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        CheckButton.setForeground(new java.awt.Color(255, 255, 255));
-        CheckButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        CheckButton.setText("CHECK");
-        CheckButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CheckButtonMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                CheckButtonMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                CheckButtonMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout CheckLayout = new javax.swing.GroupLayout(Check);
-        Check.setLayout(CheckLayout);
-        CheckLayout.setHorizontalGroup(
-            CheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(CheckButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        CheckLayout.setVerticalGroup(
-            CheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(CheckButton, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout MenuLayout = new javax.swing.GroupLayout(Menu);
         Menu.setLayout(MenuLayout);
         MenuLayout.setHorizontalGroup(
@@ -227,7 +200,6 @@ public class EM_Detail extends javax.swing.JFrame {
             .addComponent(Orders, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Employee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Admin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Check, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(MenuLayout.createSequentialGroup()
                 .addGroup(MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MenuLayout.createSequentialGroup()
@@ -249,34 +221,38 @@ public class EM_Detail extends javax.swing.JFrame {
                 .addComponent(Employee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Admin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Check, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
                 .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Detail.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         Detail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Detail.setText("DETAIL EMPLOYEE");
+        jPanel2.add(Detail, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 37, 515, 40));
 
         Name.setBackground(new java.awt.Color(204, 204, 204));
-        Name.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Name.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Name.setText("Name");
+        jPanel2.add(Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 117, 213, 32));
 
         Mail.setBackground(new java.awt.Color(204, 204, 204));
-        Mail.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Mail.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Mail.setText("Email");
+        jPanel2.add(Mail, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 156, 213, 32));
 
         Age.setBackground(new java.awt.Color(204, 204, 204));
-        Age.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Age.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Age.setText("Age");
+        jPanel2.add(Age, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 195, 213, 32));
 
         Address.setBackground(new java.awt.Color(204, 204, 204));
-        Address.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Address.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Address.setText("Address");
+        jPanel2.add(Address, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 234, 213, 32));
 
         back.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         back.setText("Back");
@@ -285,42 +261,27 @@ public class EM_Detail extends javax.swing.JFrame {
                 backActionPerformed(evt);
             }
         });
+        jPanel2.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 365, 104, 31));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Detail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Address, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Age, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Mail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(179, 179, 179)
-                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(Detail, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Mail, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Age, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Address, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63))
-        );
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Name :");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 117, 80, 32));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Mail :");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 155, 80, 32));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Age :");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 194, 75, 32));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Address :");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 233, 87, 32));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -351,14 +312,12 @@ public class EM_Detail extends javax.swing.JFrame {
         Orders.setBackground(new Color(125,109,151));
         Employee.setBackground(new Color(85,65,118));
         Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(85,65,118));
     }//GEN-LAST:event_OrderButtonMouseEntered
 
     private void OrderButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrderButtonMouseExited
        Orders.setBackground(new Color(85,65,118));
         Employee.setBackground(new Color(85,65,118));
         Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(85,65,118));
     }//GEN-LAST:event_OrderButtonMouseExited
 
     private void EmployeeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeButtonMouseClicked
@@ -372,17 +331,15 @@ public class EM_Detail extends javax.swing.JFrame {
     }//GEN-LAST:event_EmployeeButtonMouseDragged
 
     private void EmployeeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeButtonMouseEntered
-       Orders.setBackground(new Color(85,65,118));
+        Orders.setBackground(new Color(85,65,118));
         Employee.setBackground(new Color(125,109,151));
         Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(85,65,118));
     }//GEN-LAST:event_EmployeeButtonMouseEntered
 
     private void EmployeeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeButtonMouseExited
         Orders.setBackground(new Color(85,65,118));
         Employee.setBackground(new Color(85,65,118));
         Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(85,65,118));
     }//GEN-LAST:event_EmployeeButtonMouseExited
 
     private void AdminButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminButtonMouseClicked
@@ -395,33 +352,13 @@ public class EM_Detail extends javax.swing.JFrame {
         Orders.setBackground(new Color(85,65,118));
         Employee.setBackground(new Color(85,65,118));
         Admin.setBackground(new Color(125,109,151));
-        Check.setBackground(new Color(85,65,118));
     }//GEN-LAST:event_AdminButtonMouseEntered
 
     private void AdminButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminButtonMouseExited
         Orders.setBackground(new Color(85,65,118));
         Employee.setBackground(new Color(85,65,118));
         Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(85,65,118));
     }//GEN-LAST:event_AdminButtonMouseExited
-
-    private void CheckButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckButtonMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CheckButtonMouseClicked
-
-    private void CheckButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckButtonMouseEntered
-        Orders.setBackground(new Color(85,65,118));
-        Employee.setBackground(new Color(85,65,118));
-        Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(125,109,151));
-    }//GEN-LAST:event_CheckButtonMouseEntered
-
-    private void CheckButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckButtonMouseExited
-        Orders.setBackground(new Color(85,65,118));
-        Employee.setBackground(new Color(85,65,118));
-        Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(85,65,118));
-    }//GEN-LAST:event_CheckButtonMouseExited
 
     private void ExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitMouseClicked
         System.exit(0);
@@ -474,8 +411,6 @@ public class EM_Detail extends javax.swing.JFrame {
     private javax.swing.JPanel Admin;
     private javax.swing.JLabel AdminButton;
     private javax.swing.JLabel Age;
-    private javax.swing.JPanel Check;
-    private javax.swing.JLabel CheckButton;
     private javax.swing.JLabel Detail;
     private javax.swing.JPanel Employee;
     private javax.swing.JLabel EmployeeButton;
@@ -487,6 +422,10 @@ public class EM_Detail extends javax.swing.JFrame {
     private javax.swing.JLabel OrderButton;
     private javax.swing.JPanel Orders;
     private javax.swing.JButton back;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

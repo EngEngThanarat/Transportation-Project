@@ -229,7 +229,7 @@ public class EM_Orders extends javax.swing.JFrame {
                 .addComponent(Admin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Check, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -249,7 +249,7 @@ public class EM_Orders extends javax.swing.JFrame {
                 BackActionPerformed(evt);
             }
         });
-        jPanel2.add(Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 448, 95, -1));
+        jPanel2.add(Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 95, -1));
 
         Receive.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Receive.setText("Receive");
@@ -258,7 +258,7 @@ public class EM_Orders extends javax.swing.JFrame {
                 ReceiveActionPerformed(evt);
             }
         });
-        jPanel2.add(Receive, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 94, -1));
+        jPanel2.add(Receive, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 94, -1));
 
         Sending.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Sending.setText("Sending");
@@ -267,7 +267,7 @@ public class EM_Orders extends javax.swing.JFrame {
                 SendingActionPerformed(evt);
             }
         });
-        jPanel2.add(Sending, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 94, -1));
+        jPanel2.add(Sending, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, 94, -1));
 
         Complete.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Complete.setText("Complete");
@@ -276,7 +276,7 @@ public class EM_Orders extends javax.swing.JFrame {
                 CompleteActionPerformed(evt);
             }
         });
-        jPanel2.add(Complete, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 390, 94, -1));
+        jPanel2.add(Complete, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 320, 94, -1));
 
         Name.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         Name.setMinimumSize(new java.awt.Dimension(35, 20));
@@ -321,7 +321,7 @@ public class EM_Orders extends javax.swing.JFrame {
                 RefreshActionPerformed(evt);
             }
         });
-        jPanel2.add(Refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(426, 448, 94, -1));
+        jPanel2.add(Refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 94, -1));
 
         Search.setText("Search");
         Search.addActionListener(new java.awt.event.ActionListener() {
@@ -329,7 +329,7 @@ public class EM_Orders extends javax.swing.JFrame {
                 SearchActionPerformed(evt);
             }
         });
-        jPanel2.add(Search, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 278, 94, 30));
+        jPanel2.add(Search, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 94, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -338,12 +338,12 @@ public class EM_Orders extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(Menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
         );
 
         pack();

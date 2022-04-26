@@ -67,8 +67,6 @@ public class AM_Order extends javax.swing.JFrame {
         EmployeeButton = new javax.swing.JLabel();
         Admin = new javax.swing.JPanel();
         AdminButton = new javax.swing.JLabel();
-        Check = new javax.swing.JPanel();
-        CheckButton = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         EM_menu = new javax.swing.JLabel();
         Back = new javax.swing.JButton();
@@ -186,35 +184,6 @@ public class AM_Order extends javax.swing.JFrame {
             .addComponent(AdminButton, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
         );
 
-        Check.setBackground(new java.awt.Color(85, 65, 118));
-
-        CheckButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        CheckButton.setForeground(new java.awt.Color(255, 255, 255));
-        CheckButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        CheckButton.setText("CHECK");
-        CheckButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CheckButtonMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                CheckButtonMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                CheckButtonMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout CheckLayout = new javax.swing.GroupLayout(Check);
-        Check.setLayout(CheckLayout);
-        CheckLayout.setHorizontalGroup(
-            CheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(CheckButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        CheckLayout.setVerticalGroup(
-            CheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(CheckButton, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout MenuLayout = new javax.swing.GroupLayout(Menu);
         Menu.setLayout(MenuLayout);
         MenuLayout.setHorizontalGroup(
@@ -222,7 +191,6 @@ public class AM_Order extends javax.swing.JFrame {
             .addComponent(Orders, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Employee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Admin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Check, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(MenuLayout.createSequentialGroup()
                 .addGroup(MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MenuLayout.createSequentialGroup()
@@ -244,9 +212,7 @@ public class AM_Order extends javax.swing.JFrame {
                 .addComponent(Employee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Admin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Check, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -266,7 +232,7 @@ public class AM_Order extends javax.swing.JFrame {
                 BackActionPerformed(evt);
             }
         });
-        jPanel2.add(Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 448, 95, -1));
+        jPanel2.add(Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 95, -1));
 
         Receive.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Receive.setText("Receive");
@@ -275,7 +241,7 @@ public class AM_Order extends javax.swing.JFrame {
                 ReceiveActionPerformed(evt);
             }
         });
-        jPanel2.add(Receive, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 94, -1));
+        jPanel2.add(Receive, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 94, -1));
 
         Sending.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Sending.setText("Sending");
@@ -284,7 +250,7 @@ public class AM_Order extends javax.swing.JFrame {
                 SendingActionPerformed(evt);
             }
         });
-        jPanel2.add(Sending, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 94, -1));
+        jPanel2.add(Sending, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, 94, -1));
 
         Complete.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Complete.setText("Complete");
@@ -293,7 +259,7 @@ public class AM_Order extends javax.swing.JFrame {
                 CompleteActionPerformed(evt);
             }
         });
-        jPanel2.add(Complete, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 390, 94, -1));
+        jPanel2.add(Complete, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 320, 94, -1));
 
         Name.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         Name.setMinimumSize(new java.awt.Dimension(35, 20));
@@ -338,7 +304,7 @@ public class AM_Order extends javax.swing.JFrame {
                 RefreshActionPerformed(evt);
             }
         });
-        jPanel2.add(Refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(426, 448, 94, -1));
+        jPanel2.add(Refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 94, -1));
 
         Search.setText("Search");
         Search.addActionListener(new java.awt.event.ActionListener() {
@@ -360,7 +326,7 @@ public class AM_Order extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
         );
 
         pack();
@@ -380,14 +346,12 @@ public class AM_Order extends javax.swing.JFrame {
         Orders.setBackground(new Color(125,109,151));
         Employee.setBackground(new Color(85,65,118));
         Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(85,65,118));
     }//GEN-LAST:event_OrderButtonMouseEntered
 
     private void OrderButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrderButtonMouseExited
         Orders.setBackground(new Color(85,65,118));
         Employee.setBackground(new Color(85,65,118));
         Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(85,65,118));
     }//GEN-LAST:event_OrderButtonMouseExited
 
     private void EmployeeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeButtonMouseClicked
@@ -400,14 +364,12 @@ public class AM_Order extends javax.swing.JFrame {
         Orders.setBackground(new Color(85,65,118));
         Employee.setBackground(new Color(125,109,151));
         Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(85,65,118));
     }//GEN-LAST:event_EmployeeButtonMouseEntered
 
     private void EmployeeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeButtonMouseExited
         Orders.setBackground(new Color(85,65,118));
         Employee.setBackground(new Color(85,65,118));
         Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(85,65,118));
     }//GEN-LAST:event_EmployeeButtonMouseExited
 
     private void AdminButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminButtonMouseClicked
@@ -420,33 +382,13 @@ public class AM_Order extends javax.swing.JFrame {
         Orders.setBackground(new Color(85,65,118));
         Employee.setBackground(new Color(85,65,118));
         Admin.setBackground(new Color(125,109,151));
-        Check.setBackground(new Color(85,65,118));
     }//GEN-LAST:event_AdminButtonMouseEntered
 
     private void AdminButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminButtonMouseExited
         Orders.setBackground(new Color(85,65,118));
         Employee.setBackground(new Color(85,65,118));
         Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(85,65,118));
     }//GEN-LAST:event_AdminButtonMouseExited
-
-    private void CheckButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckButtonMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CheckButtonMouseClicked
-
-    private void CheckButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckButtonMouseEntered
-        Orders.setBackground(new Color(85,65,118));
-        Employee.setBackground(new Color(85,65,118));
-        Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(125,109,151));
-    }//GEN-LAST:event_CheckButtonMouseEntered
-
-    private void CheckButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckButtonMouseExited
-        Orders.setBackground(new Color(85,65,118));
-        Employee.setBackground(new Color(85,65,118));
-        Admin.setBackground(new Color(85,65,118));
-        Check.setBackground(new Color(85,65,118));
-    }//GEN-LAST:event_CheckButtonMouseExited
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         this.dispose();
@@ -562,8 +504,6 @@ public class AM_Order extends javax.swing.JFrame {
     private javax.swing.JPanel Admin;
     private javax.swing.JLabel AdminButton;
     private javax.swing.JButton Back;
-    private javax.swing.JPanel Check;
-    private javax.swing.JLabel CheckButton;
     private javax.swing.JButton Complete;
     private javax.swing.JLabel EM_menu;
     private javax.swing.JPanel Employee;
